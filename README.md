@@ -34,3 +34,11 @@ estimator.fit(input_channel)
 {"key": "BAC009S0002W0122", "wav": "/opt/ml/input/data/zh/BAC009S0002W0122.wav", "txt": "而对楼市成交抑制作用最大的限购"}
 {"key": "BAC009S0002W0123", "wav": "/opt/ml/input/data/zh/BAC009S0002W0123.wav", "txt": "也成为地方政府的眼中钉"}
 {"key": "BAC009S0002W0124", "wav": "/opt/ml/input/data/zh/BAC009S0002W0124.wav", "txt": "自六月底呼和浩特市率先宣布取消限购后"}
+```
+
+
+## 训练完以后转回 FieredASR 模型官方格式
+
+```bash
+python wenet_src/wenet/firered/convert_wenet_to_FireRed_AED_L_ckpt.py --wenet_config_path results/training/epoch_2.yaml --wenet_pt_path results/training/epoch_2.pt --original_fireredaed_dir weights/FireRedwenet_src/--output_dir weights/full_epoch2
+```

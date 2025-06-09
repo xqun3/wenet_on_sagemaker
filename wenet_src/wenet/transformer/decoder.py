@@ -107,7 +107,9 @@ class TransformerDecoder(torch.nn.Module):
                                                               eps=norm_eps)
         self.use_output_layer = use_output_layer
         if use_output_layer:
-            self.output_layer = torch.nn.Linear(attention_dim, vocab_size)
+            # self.output_layer = torch.nn.Linear(attention_dim, vocab_size)
+            self.output_layer = torch.nn.Linear(attention_dim, vocab_size, bias=False)
+
         else:
             self.output_layer = torch.nn.Identity()
         self.num_blocks = num_blocks

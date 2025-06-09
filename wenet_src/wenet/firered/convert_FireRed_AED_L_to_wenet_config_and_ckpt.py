@@ -100,7 +100,7 @@ def convert_to_wenet_yaml(tokenizer: BaseTokenizer, dims, wenet_yaml_path: str,
 
     configs['model'] = 'firered'
     configs['model_conf'] = {}
-    configs['model_conf']['ctc_weight'] = 0.3
+    configs['model_conf']['ctc_weight'] = 0.0
     configs['model_conf']['lsm_weight'] = 0.1
     configs['model_conf']['length_normalized_loss'] = False
 
@@ -230,8 +230,13 @@ def convert_to_wenet_state_dict(firered_state_dict, wenet_state_dict_path):
 
         if original_name == "decoder.tgt_word_emb.weight":
             name = "decoder.embed.0.weight"
+        if original_name == 'decoder.positional_encoding.pe':
+            name = "decoder.embed.1.pe"
         if original_name == "decoder.tgt_word_prj.weight":
             name = "decoder.output_layer.weight"
+        if original_name == 'encoder.positional_encoding.pe':
+            name = "encoder.embed.pos_enc.pe"
+
         if 'decoder.layer_norm_out.' in original_name:
             name = name.replace('decoder.layer_norm_out', 'decoder.after_norm')
 
